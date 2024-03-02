@@ -8,7 +8,7 @@ interface ButtonProps {
 const Button: FC<ButtonProps> = ({ getClick, label }) => {
   return (
     <button
-      className="py-4 px-8 bg-green-500 rounded-md text-black font-semibold hover:bg-white"
+      className="py-4 px-8 w-64 bg-green-500 rounded-md text-black font-semibold hover:bg-white"
       onClick={getClick}
     >
       {label}

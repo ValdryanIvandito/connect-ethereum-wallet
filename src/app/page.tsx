@@ -23,6 +23,10 @@ interface CryptoTickers {
 }
 
 const Home: React.FC = () => {
+  const url1 =
+    "https://api.coingecko.com/api/v3/simple/price/?ids=bitcoin,ethereum,cardano,binancecoin,solana,ripple,polkadot,cosmos&vs_currencies=usd&include_24hr_change=true";
+  const url2 = "https://app.nusa.finance/";
+  const url3 = "https://nft.nusa.finance/";
   const [cryptoTickers, setCryptoTickers] = useState<CryptoTickers>({});
   const [walletAddress, setWalletAddress] = useState<string>("");
   const [balance, setBalance] = useState<number>(0);
@@ -35,7 +39,6 @@ const Home: React.FC = () => {
         const accounts = await web3.eth.getAccounts();
         setWalletAddress(accounts[0]);
         updateBalance(web3, accounts[0]);
-        fetchCryptoTickers();
       } catch (error) {
         console.error(error);
       }
@@ -58,9 +61,7 @@ const Home: React.FC = () => {
   };
 
   const fetchCryptoTickers = async () => {
-    const URL_API =
-      "https://api.coingecko.com/api/v3/simple/price/?ids=bitcoin,ethereum,cardano,binancecoin,solana,ripple,polkadot,cosmos&vs_currencies=usd&include_24hr_change=true";
-
+    // pemetaan nama cryptocurrency
     const cryptoNameMapping: { [key: string]: string } = {
       bitcoin: "BTC",
       ethereum: "ETH",
@@ -73,10 +74,10 @@ const Home: React.FC = () => {
     };
 
     try {
-      const response = await fetch(URL_API);
+      const response = await fetch(url1);
       const data: { [key: string]: CryptoData } = await response.json();
 
-      // Ubah nama kripto sesuai pemetaan
+      // Ubah nama cryptocurrency sesuai pemetaan
       const mappedData: CryptoTickers = {};
       Object.keys(data).forEach((cryptoName) => {
         const mappedCryptoName = cryptoNameMapping[cryptoName] || cryptoName;
@@ -93,6 +94,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     fetchCryptoTickers();
+
     // Cek apakah sudah terkoneksi wallet saat memuat halaman
     if (window.ethereum) {
       const web3 = new Web3(window.ethereum);
@@ -125,14 +127,8 @@ const Home: React.FC = () => {
             <div>
               <Text />
               <div className="flex justify-start items-center gap-8">
-                <ButtonLink1
-                  link="https://app.nusa.finance/"
-                  label="LAUNCH APP"
-                />
-                <ButtonLink2
-                  link="https://nft.nusa.finance/"
-                  label="NFT MARKETPLACE"
-                />
+                <ButtonLink1 link={url2} label="LAUNCH APP" />
+                <ButtonLink2 link={url3} label="NFT MARKETPLACE" />
               </div>
             </div>
             <Picture1 />
