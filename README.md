@@ -1,6 +1,6 @@
 # Introduction
 
-This is a simple application that aims to connect Ethereum wallets, such as **_Metamask_**, and retrieve cryptocurrency ticker data from **_CoinGecko_**.
+This is a simple application that aims to connect Ethereum wallets such as **_Metamask_**, and retrieve cryptocurrency ticker data from **_CoinGecko_**.
 
 The application follows the specifications below:
 
@@ -54,6 +54,9 @@ npm run dev
 ## References
 
 [Web3.js](https://web3js.org/)
+
 [CoinGecko API](https://docs.coingecko.com/reference/introduction)
+
 [Next.js](https://nextjs.org/docs)
+
 [Vercel](https://vercel.com/docs)
